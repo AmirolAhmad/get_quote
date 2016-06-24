@@ -1,0 +1,7 @@
+<div class="page-header">
+  <h1>New Client</h1>
+</div>
+
+<%= form_for @client, multipart: true, html: { class: "form-horizontal form-bordered", method: :post } do |f| %>
+  <%= render partial: 'form', locals: {f: f, post: @client} %>
+<% end %>

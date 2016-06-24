@@ -14,6 +14,9 @@
           <%= link_to "Profile", edit_profile_path %>
         </li>
         <li role="presentation">
+          <%= link_to "Client", clients_path %>
+        </li>
+        <li role="presentation">
           <%= link_to destroy_user_session_path, method: "delete" do %>
             <i class="fa fa-sign-out"></i> Logout
           <% end %>

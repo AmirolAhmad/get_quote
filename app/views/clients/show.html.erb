@@ -1,0 +1,17 @@
+<div class="page-header">
+  <h1>Client Details</h1>
+</div>
+
+<p>Client ID: <strong><%= @client.clientId %></strong></p>
+<p>Contact Person: <strong><%= @client.contactPerson %></strong></p>
+<p>Company Name: <strong><%= @client.companyName %></strong></p>
+<p>Company Address: <strong><%= @client.companyAddress %></strong></p>
+<p>Email: <strong><%= @client.email %></strong></p>
+<p>Phone: <strong><%= @client.phone %></strong></p>
+
+
+<%= link_to edit_client_path(@client), class: "btn btn-primary btn-sm" do %>
+  <i class="fa fa-edit"></i> Edit this client
+<% end %>
+
+<%= link_to "Back", :back, class: "btn btn-link btn-sm" %>

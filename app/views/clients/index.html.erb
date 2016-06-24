@@ -1,0 +1,39 @@
+<div class="page-header">
+  <h1>My Client</h1>
+</div>
+
+<p><%= link_to "Add Client", new_client_path, class: "btn btn-xs btn-primary" %></p>
+<table class="table table-bordered table-striped table-hover" id="datatable-metros">
+  <thead>
+    <tr>
+      <th class="col-md-1">No</th>
+      <th>Contact Person</th>
+      <th>Company Name</th>
+      <th class="col-md-2">Date Created</th>
+      <th class="col-md-2">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @clients.each_with_index do |client,index| %>
+    <tr>
+      <td><%= index + 1 %></td>
+      <td><%= client.contactPerson %></td>
+      <td><%= client.companyName %></td>
+      <td><%= client.created_at.strftime("%d %B %Y") %></td>
+      <td>
+        <div class="btn-group btn-group-justified btn-group-xs">
+          <%= link_to client_path(client), class: "btn btn-primary", "data-toggle" => "tooltip", "data-placement" => "top", title: "View" do %>
+            <i class="fa fa-search-plus"></i>
+          <% end %>
+          <%= link_to edit_client_path(client), class: "btn btn-default", "data-toggle" => "tooltip", "data-placement" => "top", title: "Edit" do %>
+            <i class="fa fa-edit"></i>
+          <% end %>
+          <%= link_to client_path(client), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", "data-toggle" => "tooltip", "data-placement" => "top", title: "Delete" do %>
+            <i class="fa fa-trash"></i>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

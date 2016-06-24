@@ -18,4 +18,8 @@ class ApplicationController < ActionController::Base
         :id, :user_id, :firstName, :lastName, :phoneNumber, :accountType, :businessName, :businessAddress, :businessRegNumber, :csPhoneNumber, :businessTaxRegNumber
       ])
   end
+
+  def client_params
+  	params.require(:client).permit(:user_id, :clientId, :contactPerson, :companyName, :companyAddress, :email, :phone)
+  end
 end
