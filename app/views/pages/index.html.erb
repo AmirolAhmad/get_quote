@@ -3,7 +3,7 @@
   <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
   <p>
     <% if user_signed_in? %>
-      <a class="btn btn-lg btn-primary" href="#" role="button"><i class="fa fa-user"></i> My dashboard</a>
+      <%= link_to "My dashboard", dashboard_path, class: "btn btn-lg btn-primary" %>
     <% else %>
       <%= link_to "Sign up today", register_path, class: "btn btn-lg btn-success" %>
     <% end %>
