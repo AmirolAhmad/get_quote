@@ -1,0 +1,114 @@
+<%= form_for current_user, url: profile_path, html: { multipart: true, method: :patch, class: "form-horizontal form-bordered" } do |f| %>
+
+  <% if current_user.errors.any? %>
+  <div class="alert alert-danger alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <strong><%= pluralize(current_user.errors.count, "error") %> prohibited
+      this user from being saved:</strong>
+      <ul>
+        <% current_user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+  </div>
+  <% end %>
+
+  <%= f.fields_for :profile_attributes, current_user.profile do |profile| %>
+
+    <div class="form-group">
+      <%= profile.label :firstName, "First Name", class: "col-md-3 control-label" %>
+      <div class="col-md-6">
+        <%= profile.text_field :firstName, :class => "form-control", placeholder: "John" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= profile.label :lastName, "Last Name", class: "col-md-3 control-label" %>
+      <div class="col-md-6">
+        <%= profile.text_field :lastName, :class => "form-control", placeholder: "Doe" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= profile.label :phoneNumber, "Phone Number", class: "col-md-3 control-label" %>
+      <div class="col-md-6">
+        <%= profile.text_field :phoneNumber, :class => "form-control", placeholder: "+60195151707" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= profile.label :accountType, "Account Type", class: "col-md-3 control-label" %>
+      <div class="radiobox col-md-6">
+        <label class="radio-inline">
+          <%= profile.radio_button :accountType, "individual", checked: true %> Individual
+        </label>
+        <label class="radio-inline">
+          <%= profile.radio_button :accountType, "organization" %> Organization
+        </label>
+      </div>
+    </div>
+
+    <div id="organization" style="display:none;">
+
+      <div class="form-group">
+        <%= profile.label :businessName, "Business Name", class: "col-md-3 control-label" %>
+        <div class="col-md-6">
+          <%= profile.text_field :businessName, :class => "form-control", placeholder: "Google Inc." %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= profile.label :businessAddress, "Business Address", class: "col-md-3 control-label" %>
+        <div class="col-md-6">
+          <%= profile.text_area :businessAddress, :class => "form-control", rows: 3 %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= profile.label :businessRegNumber, "Business Reg. Number", class: "col-md-3 control-label" %>
+        <div class="col-md-6">
+          <%= profile.text_field :businessRegNumber, :class => "form-control", placeholder: "A 546462453" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= profile.label :csPhoneNumber, "Customer Service Phone Number", class: "col-md-3 control-label" %>
+        <div class="col-md-6">
+          <%= profile.text_field :csPhoneNumber, :class => "form-control", placeholder: "+601354534598" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= profile.label :businessTaxRegNumber, "Business Tax Reg. Number", class: "col-md-3 control-label" %>
+        <div class="col-md-6">
+          <%= profile.text_field :businessTaxRegNumber, :class => "form-control", placeholder: "CV26494422" %>
+        </div>
+      </div>
+
+    </div>
+
+  <% end %>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label"></label>
+    <div class="col-md-6">
+      <%= f.button "Save", :class => "btn btn-primary", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Updating..." } %>
+      <%= link_to 'Back', dashboard_path, :class => "btn btn-link" %>
+    </div>
+  </div>
+
+<% end %>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  if($('input[type=radio][name="user[profile_attributes][accountType]"][value=organization]').is(':checked'))
+      $('#organization').css("display","block");
+
+  $('input[type=radio][name="user[profile_attributes][accountType]"]').change(function () {
+    $('#organization').css("display","none");
+
+    var fieldToShow = $(this).val();
+    $("#" + fieldToShow).css("display","block");
+  });
+});
+</script>

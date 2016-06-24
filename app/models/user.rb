@@ -3,9 +3,13 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
+  has_one :profile, dependent: :destroy
+  accepts_nested_attributes_for :profile, update_only: true, allow_destroy: true
+
+  after_create :create_profile
+
   attr_accessor :login
   validate :validate_username
-
   validates :username, :presence => true, :uniqueness => { :case_sensitive => false }
 
   def self.find_first_by_auth_conditions(warden_conditions)
