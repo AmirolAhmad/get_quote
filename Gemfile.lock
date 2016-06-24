@@ -64,6 +64,7 @@ GEM
       activesupport (>= 3.0)
       deep_merge (~> 1.0, >= 1.0.1)
     connection_pool (2.2.0)
+    database_cleaner (1.5.3)
     debug_inspector (0.0.2)
     deep_merge (1.0.1)
     devise (4.1.1)
@@ -219,6 +220,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   config
+  database_cleaner
   devise
   dotenv-rails
   factory_girl_rails

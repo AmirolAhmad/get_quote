@@ -29,3 +29,7 @@ group :development do
   gem 'spring'
   gem 'letter_opener'
 end
+
+group :test do
+  gem 'database_cleaner'
+end
