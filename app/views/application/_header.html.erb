@@ -1,7 +1,20 @@
 <div class="header clearfix">
   <nav>
     <ul class="nav nav-pills pull-right">
-      <li role="presentation" class="active"><a href="#">Home</a></li>
+      <% if user_signed_in? %>
+        <li role="presentation">
+          <%= link_to destroy_user_session_path, method: "delete" do %>
+            <i class="fa fa-sign-out"></i> Logout
+          <% end %>
+        </li>
+      <% else %>
+        <li role="presentation">
+          <%= link_to login_path do %>
+          <i class="fa fa-lock"></i> Login
+          <% end %>
+        </li>
+      <% end %>
+      <li role="presentation"><a href="#">Home</a></li>
       <li role="presentation"><a href="#">About</a></li>
       <li role="presentation"><a href="#">Contact</a></li>
     </ul>

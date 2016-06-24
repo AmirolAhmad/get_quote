@@ -1,7 +1,13 @@
 <div class="jumbotron">
   <h1>Jumbotron heading</h1>
   <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-  <p><a class="btn btn-lg btn-success" href="#" role="button"><i class="fa fa-user"></i> Sign up today</a></p>
+  <p>
+    <% if user_signed_in? %>
+      <a class="btn btn-lg btn-primary" href="#" role="button"><i class="fa fa-user"></i> My dashboard</a>
+    <% else %>
+      <%= link_to "Sign up today", register_path, class: "btn btn-lg btn-success" %>
+    <% end %>
+  </p>
 </div>
 
 <div class="row marketing">

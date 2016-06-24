@@ -5,6 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GetQuote</title>
+  <meta content='' name='keywords'>
+  <meta content=''>
+  <meta content='' name='author'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300,100' rel='stylesheet' type='text/css'>
@@ -12,6 +15,7 @@
 </head>
 <body>
   <div class="container">
+    <%= render 'alert' %>
     <%= render 'header' %>
     <%= yield %>
     <%= render 'footer' %>
