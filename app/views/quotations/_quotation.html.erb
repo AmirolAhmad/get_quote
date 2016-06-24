@@ -1,0 +1,12 @@
+<tr>
+  <td><%= quotation_counter + 1 %></td>
+  <td><%= quotation.quoteId %></td>
+  <td><%= quotation.client.recipient %></td>
+  <td id="quotation-status_<%= quotation.id %>">
+    <span class="label <%= quotation.active? ? 'label-primary' : quotation.closed? ? 'label-default' : 'label-danger' %>"><%= quotation.status %></span>
+  </td>
+  <td><%= quotation.created_at.strftime("%d %B %Y") %></td>
+  <td id="quotation-state_<%= quotation.id %>">
+    <%= render partial: "quotation_state", locals: {:quotation => quotation} %>
+  </td>
+</tr>

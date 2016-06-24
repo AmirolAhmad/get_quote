@@ -22,4 +22,8 @@ class ApplicationController < ActionController::Base
   def client_params
   	params.require(:client).permit(:user_id, :clientId, :contactPerson, :companyName, :companyAddress, :email, :phone)
   end
+
+  def quotation_params
+  	params.require(:quotation).permit(:user_id, :recipientId, :quoteId, :validUntil, :status, :subTotal, :taxRate, :tax, :total, :note)
+  end
 end

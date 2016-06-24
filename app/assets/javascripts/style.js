@@ -16,6 +16,16 @@ ready = function() {
     window.document.location = $(this).data("url");
   });
 
+  // datepicker
+  $('.datepicker').datetimepicker({
+    format:"DD-MM-YYYY"
+  });
+  
+  // timepicker
+  $('.timepicker').datetimepicker({
+    format: 'LT'
+  });
+
 };
 
 $(document).ready(ready);

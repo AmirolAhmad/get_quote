@@ -17,4 +17,7 @@
 //= require react
 //= require react_ujs
 //= require components
+//= require moment
+//= require bootstrap-datetimepicker
+//= require sweetalert/sweetalert.min
 //= require style

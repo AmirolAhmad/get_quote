@@ -1,5 +1,6 @@
 class Client < ActiveRecord::Base
   belongs_to :user
+  has_many :quotations, foreign_key: "recipientId"
 
   after_create :generate_client_id
 
@@ -15,5 +16,9 @@ class Client < ActiveRecord::Base
     num = (0...6).map { random_num[rand(random_num.length)] }.join
 
     self.update_attributes(:clientId => char + num)
+  end
+
+  def recipient
+    "#{contactPerson} (#{companyName}) - #{clientId}"
   end
 end

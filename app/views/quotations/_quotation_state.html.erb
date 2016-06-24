@@ -1,0 +1,10 @@
+<div class="btn-group btn-group-justified btn-group-xs">
+  <%= link_to quotation_path(quotation), class: "btn btn-primary", "data-toggle" => "tooltip", "data-placement" => "top", title: "View" do %>
+    <i class="fa fa-eye"></i>
+  <% end %>
+  <% if quotation.active? %>
+    <%= link_to mark_closed_quotation_path(quotation), method: :patch, remote: true, class: "btn btn-default", "data-toggle" => "tooltip", "data-placement" => "top", title: "Mark as closed" do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
+  <% end %>
+</div>

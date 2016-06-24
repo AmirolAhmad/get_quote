@@ -1,9 +1,9 @@
 <div class="page-header">
-  <h1>My Client <span class="badge"><%= current_user.clients.count %></span></h1>
+  <h1>My Clients <span class="badge"><%= current_user.clients.count %></span></h1>
 </div>
 
 <p class="pull-right"><%= link_to "Add New Client", new_client_path, class: "btn btn-xs btn-primary" %></p>
-<table class="table table-bordered table-hover" id="datatable-metros">
+<table class="table table-bordered table-hover">
   <thead>
     <tr>
       <th class="col-md-1">No</th>
@@ -15,9 +15,9 @@
   </thead>
   <tbody>
     <% @clients.each_with_index do |client,index| %>
-    <tr class='clickable-row' data-url="<%= client_url(client) %>">
+    <tr>
       <td><%= index + 1 %></td>
-      <td><%= client.contactPerson %></td>
+      <td class='clickable-row' data-url="<%= client_url(client) %>"><span class="badge"><%= client.quotations.count %></span> <%= client.contactPerson %> - <small>(<%= client.clientId %>)</small></td>
       <td><%= client.companyName %></td>
       <td><%= client.created_at.strftime("%d %B %Y") %></td>
       <td>

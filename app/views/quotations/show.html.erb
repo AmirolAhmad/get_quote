@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1>Quotation Details</h1>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+        Quotation ID: <strong><%= @quotation.quoteId %></strong>
+      </div>
+      <div class="col-md-4">
+        Quotation Date: <strong><%= @quotation.created_at.strftime("%d %B %Y") %></strong></span>
+      </div>
+      <div class="col-md-4">
+        Valid Until: <strong><%= @quotation.validUntil.strftime("%d %B %Y") %></strong> <span class="label <%= @quotation.active? ? 'label-primary' : @quotation.closed? ? 'label-default' : 'label-danger' %>"><%= @quotation.status %></span>
+      </div>
+    </div>
+    <hr>
+    <p>Contact Person: <strong><%= @quotation.client.contactPerson %></strong></p>
+    <p>Client ID: <strong><%= @quotation.client.clientId %></strong></p>
+    <p>Company Name: <strong><%= @quotation.client.companyName %></strong></p>
+    <p>Company Address: <strong><%= @quotation.client.companyAddress %></strong></p>
+    <p>Email: <strong><%= @quotation.client.email %></strong></p>
+    <p>Phone: <strong><%= @quotation.client.phone %></strong></p>
+    <hr>
+    <p>Tax Rate: <strong><%= @quotation.taxRate %></strong></p>
+    <p>Note: <strong><%= @quotation.note %></strong></p>
+  </div>
+  <div class="panel-footer">
+    <%= link_to "Back", :back, class: "btn btn-link btn-sm" %>
+  </div>
+</div>

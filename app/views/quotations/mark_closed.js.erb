@@ -1,0 +1,3 @@
+$("#quotation-status_<%= @quotation.id %>").html("<span class='label label-default'>closed</span>");
+$("#quotation-state_<%= @quotation.id %>").html("<%= j render partial: 'quotation_state', locals: {:quotation => @quotation} %>");
+swal("Closed!", "This quotation has been closed and not valid anymore.", "error")

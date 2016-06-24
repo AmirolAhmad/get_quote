@@ -2,16 +2,56 @@
   <h1>Client Details</h1>
 </div>
 
-<p>Client ID: <strong><%= @client.clientId %></strong></p>
-<p>Contact Person: <strong><%= @client.contactPerson %></strong></p>
-<p>Company Name: <strong><%= @client.companyName %></strong></p>
-<p>Company Address: <strong><%= @client.companyAddress %></strong></p>
-<p>Email: <strong><%= @client.email %></strong></p>
-<p>Phone: <strong><%= @client.phone %></strong></p>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <p>Client ID: <strong><%= @client.clientId %></strong></p>
+    <p>Contact Person: <strong><%= @client.contactPerson %></strong></p>
+    <p>Company Name: <strong><%= @client.companyName %></strong></p>
+    <p>Company Address: <strong><%= @client.companyAddress %></strong></p>
+    <p>Email: <strong><%= @client.email %></strong></p>
+    <p>Phone: <strong><%= @client.phone %></strong></p>
+  </div>
+  <div class="panel-footer">
+    <%= link_to edit_client_path(@client), class: "btn btn-primary btn-sm" do %>
+      <i class="fa fa-edit"></i> Edit
+    <% end %>
 
+    <%= link_to "Back", :back, class: "btn btn-link btn-sm" %>
+  </div>
+</div>
 
-<%= link_to edit_client_path(@client), class: "btn btn-primary btn-sm" do %>
-  <i class="fa fa-edit"></i> Edit this client
-<% end %>
+<hr>
 
-<%= link_to "Back", :back, class: "btn btn-link btn-sm" %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Quotations List</h3>
+  </div>
+  <div class="panel-body">
+
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="col-md-1">No</th>
+          <th>Quotation ID</th>
+          <th>Status</th>
+          <th class="col-md-2">Date Created</th>
+          <th class="col-md-2">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @client.quotations.each_with_index do |quotation,index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= quotation.quoteId %></td>
+          <td id="quotation-status_<%= quotation.id %>"><span class="label <%= quotation.active? ? 'label-primary' : quotation.closed? ? 'label-default' : 'label-danger' %>"><%= quotation.status %></span></td>
+          <td><%= quotation.created_at.strftime("%d %B %Y") %></td>
+          <td id="quotation-state_<%= quotation.id %>">
+            <%= render partial: "quotations/quotation_state", locals: {:quotation => quotation} %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>

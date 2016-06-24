@@ -1,0 +1,20 @@
+<div class="page-header">
+  <h1>My Quotations <span class="badge"><%= current_user.quotations.count %></span></h1>
+</div>
+
+<p class="pull-right"><%= link_to "Add New Quotation", new_quotation_path, class: "btn btn-xs btn-primary" %></p>
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th class="col-md-1">No</th>
+      <th class="col-md-1">Quote ID</th>
+      <th>Client</th>
+      <th class="col-md-1">Status</th>
+      <th class="col-md-2">Date Created</th>
+      <th class="col-md-2">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render :partial => "quotation", :collection => @quotations %>
+  </tbody>
+</table>
