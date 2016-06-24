@@ -1,9 +1,9 @@
 <div class="page-header">
-  <h1>My Client</h1>
+  <h1>My Client <span class="badge"><%= current_user.clients.count %></span></h1>
 </div>
 
-<p><%= link_to "Add Client", new_client_path, class: "btn btn-xs btn-primary" %></p>
-<table class="table table-bordered table-striped table-hover" id="datatable-metros">
+<p class="pull-right"><%= link_to "Add New Client", new_client_path, class: "btn btn-xs btn-primary" %></p>
+<table class="table table-bordered table-hover" id="datatable-metros">
   <thead>
     <tr>
       <th class="col-md-1">No</th>
@@ -15,16 +15,13 @@
   </thead>
   <tbody>
     <% @clients.each_with_index do |client,index| %>
-    <tr>
+    <tr class='clickable-row' data-url="<%= client_url(client) %>">
       <td><%= index + 1 %></td>
       <td><%= client.contactPerson %></td>
       <td><%= client.companyName %></td>
       <td><%= client.created_at.strftime("%d %B %Y") %></td>
       <td>
         <div class="btn-group btn-group-justified btn-group-xs">
-          <%= link_to client_path(client), class: "btn btn-primary", "data-toggle" => "tooltip", "data-placement" => "top", title: "View" do %>
-            <i class="fa fa-search-plus"></i>
-          <% end %>
           <%= link_to edit_client_path(client), class: "btn btn-default", "data-toggle" => "tooltip", "data-placement" => "top", title: "Edit" do %>
             <i class="fa fa-edit"></i>
           <% end %>
