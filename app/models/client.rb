@@ -1,4 +1,7 @@
 class Client < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :clientId, use: [:slugged, :finders, :history]
+
   belongs_to :user
   has_many :quotations, foreign_key: "recipientId"
 
@@ -25,5 +28,9 @@ class Client < ActiveRecord::Base
 
   def recipient
     "#{contactPerson} (#{companyName}) - #{clientId}"
+  end
+
+  def should_generate_new_friendly_id?
+    clientId_changed?
   end
 end

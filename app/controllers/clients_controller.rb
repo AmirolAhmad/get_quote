@@ -60,7 +60,7 @@ class ClientsController < ApplicationController
     end
 
     def set_client
-      @client = @user.clients.find(params[:id])
+      @client = @user.clients.friendly.find(params[:id])
       rescue ActiveRecord::RecordNotFound
       redirect_to(clients_url, :notice => 'Record not found')
     end

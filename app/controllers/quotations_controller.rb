@@ -22,10 +22,15 @@ class QuotationsController < ApplicationController
   end
 
   def show
-    if @quotation
-      render
-    else
-      redirect_to quotations_path, notice: "Oppss! Quotation not found!"
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = QuotationPdf.new(@quotation, view_context)
+        send_data pdf.render, filename:
+        "#{@quotation.quoteId}.pdf",
+        type: "application/pdf",
+        disposition: "inline"
+      end
     end
   end
 
@@ -40,7 +45,7 @@ class QuotationsController < ApplicationController
     end
 
     def set_quotation
-      @quotation = @user.quotations.find(params[:id])
+      @quotation = @user.quotations.friendly.find(params[:id])
       rescue ActiveRecord::RecordNotFound
       redirect_to(quotations_url, :notice => 'Record not found')
     end

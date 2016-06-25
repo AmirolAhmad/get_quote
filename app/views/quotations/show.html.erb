@@ -60,5 +60,6 @@
   </div>
   <div class="panel-footer">
     <%= link_to "Back", :back, class: "btn btn-link btn-sm" %>
+    <%= link_to "Download PDF", quotation_path(@quotation.slug, :format => "pdf"), :class => "btn btn-primary btn-sm pull-right", :target => "_blank" %>
   </div>
 </div>

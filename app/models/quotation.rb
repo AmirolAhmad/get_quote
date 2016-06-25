@@ -1,5 +1,7 @@
 class Quotation < ActiveRecord::Base
   enum status: [:active, :expired, :closed, :accepted, :rejected]
+  extend FriendlyId
+  friendly_id :quoteId, use: [:slugged, :finders, :history]
 
   has_many :items, as: :itemable, dependent: :destroy
   belongs_to :user
@@ -34,5 +36,9 @@ class Quotation < ActiveRecord::Base
   def calc_totalPrice
     totalPrice = subTotal + tax
     self.update(total: totalPrice)
+  end
+
+  def should_generate_new_friendly_id?
+    quoteId_changed?
   end
 end
