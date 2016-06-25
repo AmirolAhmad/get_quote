@@ -7,6 +7,11 @@ class Client < ActiveRecord::Base
   default_scope -> { order('clients.created_at DESC') }
 
   validates :contactPerson, presence: {message: "can't be blank"}, length: { in: 2..250 }
+  validates :companyName, presence: {message: "can't be blank"}, length: { in: 2..250 }
+  validates :companyAddress, presence: {message: "can't be blank"}
+  validates :email, presence: {message: "can't be blank"}
+  validates :phone, presence: {message: "can't be blank"}, length: { maximum: 12,
+    too_long: "%{count} characters is the maximum allowed" }, numericality: true
 
   def generate_client_id
     random_char = ['A'..'Z'].map { |i| i.to_a }.flatten

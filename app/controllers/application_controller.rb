@@ -24,6 +24,6 @@ class ApplicationController < ActionController::Base
   end
 
   def quotation_params
-  	params.require(:quotation).permit(:user_id, :recipientId, :quoteId, :validUntil, :status, :subTotal, :taxRate, :tax, :total, :note)
+  	params.require(:quotation).permit(:user_id, :recipientId, :quoteId, :validUntil, :status, :subTotal, :taxRate, :tax, :total, :note, items_attributes: [:id, :itemable_type, :itemable_id, :description, :quantity, :unitPrice, :totalPrice, :_destroy])
   end
 end

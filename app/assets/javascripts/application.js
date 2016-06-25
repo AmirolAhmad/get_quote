@@ -20,4 +20,5 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require sweetalert/sweetalert.min
+//= require cocoon
 //= require style

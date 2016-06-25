@@ -42,6 +42,21 @@
   </div>
 </div>
 
+<hr>
+
+<h3 class="text-center">Items</h3>
+
+<div class="form-group">
+  <div class="col-md-7 col-md-offset-3" id="items">
+    <%= f.fields_for :items do |item| %>
+      <%= render partial: 'item_fields', locals: {f: item} %>
+    <% end %>
+    <%= link_to_add_association "Add item", f, :items, class: "btn btn-xs btn-success" %>
+  </div>
+</div>
+
+<hr>
+
 <div class="form-group">
   <label class="col-md-3 control-label"></label>
   <div class="col-md-7">

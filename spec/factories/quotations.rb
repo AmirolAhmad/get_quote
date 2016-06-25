@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :quotation do
-    user nil
+    user 
     recipientId 1
     quoteId "MyString"
     validUntil "2016-06-24 23:45:58"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160624154558) do
+ActiveRecord::Schema.define(version: 20160625072554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,19 @@ ActiveRecord::Schema.define(version: 20160624154558) do
   end
 
   add_index "clients", ["user_id"], name: "index_clients_on_user_id", using: :btree
+
+  create_table "items", force: :cascade do |t|
+    t.text     "description"
+    t.integer  "quantity",      default: 1
+    t.float    "unitPrice"
+    t.float    "totalPrice"
+    t.integer  "itemable_id"
+    t.string   "itemable_type"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "items", ["itemable_id", "itemable_type"], name: "index_items_on_itemable_id_and_itemable_type", using: :btree
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "user_id"
@@ -54,12 +67,12 @@ ActiveRecord::Schema.define(version: 20160624154558) do
     t.datetime "validUntil"
     t.integer  "status",      default: 0
     t.float    "subTotal"
-    t.float    "taxRate"
+    t.float    "taxRate",     default: 0.0
     t.float    "tax"
     t.float    "total"
     t.text     "note"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "quotations", ["user_id"], name: "index_quotations_on_user_id", using: :btree

@@ -16,6 +16,7 @@
       </div>
     </div>
     <hr>
+    <h4><u>Client Details</u></h4>
     <p>Contact Person: <strong><%= @quotation.client.contactPerson %></strong></p>
     <p>Client ID: <strong><%= @quotation.client.clientId %></strong></p>
     <p>Company Name: <strong><%= @quotation.client.companyName %></strong></p>
@@ -23,8 +24,39 @@
     <p>Email: <strong><%= @quotation.client.email %></strong></p>
     <p>Phone: <strong><%= @quotation.client.phone %></strong></p>
     <hr>
-    <p>Tax Rate: <strong><%= @quotation.taxRate %></strong></p>
-    <p>Note: <strong><%= @quotation.note %></strong></p>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="col-md-1">Item No</th>
+          <th>Description</th>
+          <th class="col-md-1">Quantity</th>
+          <th class="col-md-2">Unit Price</th>
+          <th class="col-md-2">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @quotation.items.each_with_index do |quotation,index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= quotation.description %></td>
+          <td><%= quotation.quantity %></td>
+          <td><%= number_to_currency(quotation.unitPrice) %></td>
+          <td><%= number_to_currency(quotation.totalPrice) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-md-9">
+        <p>Note: <strong><%= @quotation.note %></strong></p>
+      </div>
+      <div class="col-md-3 pull-right">
+        <p>Subtotal: <strong><%= number_to_currency(@quotation.subTotal) %></strong></p>
+        <p>Tax: <strong><%= number_to_currency(@quotation.tax) %></strong></p>
+        <p>Tax Rate: <strong><%= @quotation.taxRate %>%</strong></p>
+        <p><mark>Total Price: <strong><%= number_to_currency(@quotation.total) %></strong></mark></p>
+      </div>
+    </div>
   </div>
   <div class="panel-footer">
     <%= link_to "Back", :back, class: "btn btn-link btn-sm" %>
