@@ -108,15 +108,16 @@ class QuotationPdf < Prawn::Document
   end
 
   def notes
-    move_down 20
+    move_up 80
     text "NOTES", :size => 12, :color => "585858", :style => :bold
     move_down 2
     text "#{@quotation.note}", :size => 9, :color => "585858"
+    move_down 10
     text "We will be happy to supply any further information you may need and trust that you call on us to fill your order, which will receive our prompt and careful intention.", :size => 9, :color => "585858"
   end
 
   def message
-    move_down 220
+    move_down 30
     text '"THIS IS A COMPUTER-GENERATED DOCUMENT AND IT DOES NOT REQUIRE A SIGNATURE. THIS DOCUMENT SHALL NOT BE INVALIDATED SOLELY ON THE GROUND THAT IT IS NOT SIGNED. "', :color => "585858", :size => 7, :align => :center, :style => :bold
   end
 end
